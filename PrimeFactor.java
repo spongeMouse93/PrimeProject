@@ -2,22 +2,47 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.awt.Color;
 
-public class PrimeFactor extends JFrame {
+public class PrimeFactor extends JFrame implements ActionListener {
+    private JFrame f;
+    private JButton b, ba, fa;
+    private JTextArea ta;
+    private JTextField tf;
     public PrimeFactor() {
-        JFrame f = new JFrame("Prime Factorization Calculator");
+        f = new JFrame("Prime Factorization Calculator");
         f.setSize(528, 304);
         f.setVisible(true);
         f.setLayout(null);
         f.setResizable(false);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        JButton b = new JButton("Get Prime");
+        b = new JButton("Get Prime");
         JLabel l = new JLabel("Enter number: ");
-        JTextField tf = new JTextField();
-        JTextArea ta = new JTextArea();
-        b.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                try {
+        tf = new JTextField();
+        ta = new JTextArea();
+        ta.setEditable(false);
+        b.addActionListener(this);
+        l.setBounds(39, 50, 101, 20);
+        f.add(l);
+        tf.setBounds(215, 50, 125, 27);
+        f.add(tf);
+        b.setBounds(39, 124, 94, 29);
+        f.add(b);
+        ta.setBounds(215, 124, 250, 100);
+        f.add(ta);
+        ba = new JButton("Background");
+        ba.addActionListener(this);
+        fa = new JButton("Foreground");
+        fa.addActionListener(this);
+        ba.setBounds(39, 274, 111, 29);
+        fa.setBounds(215, 274, 111, 29);
+        f.add(ba);
+        f.add(fa);
+    }
+    
+    public void actionPerformed(ActionEvent e){
+        if (e.getSource() == b)
+            try {
                     int num = Integer.parseInt(tf.getText());
                     if (num <= 1)
                         JOptionPane.showMessageDialog(f, "Number must be greater than 1");
@@ -29,16 +54,13 @@ public class PrimeFactor extends JFrame {
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(f, "Only ints allowed");
                 }
-            }
-        });
-        l.setBounds(39, 50, 101, 20);
-        f.add(l);
-        tf.setBounds(215, 50, 125, 27);
-        f.add(tf);
-        b.setBounds(39, 124, 94, 29);
-        f.add(b);
-        ta.setBounds(215, 124, 250, 100);
-        f.add(ta);
+        else if (e.getSource() == ba){
+            Color c = JColorChooser.showDialog(this, "Choose Background Color", Color.BLACK);
+            ta.setBackground(c);
+        }else if (e.getSource() == fa){
+            Color c = JColorChooser.showDialog(this, "Choose Foreground Color", Color.BLACK);
+            ta.setForeground(c);
+        }
     }
 
     private static boolean isPrime(int num) {
