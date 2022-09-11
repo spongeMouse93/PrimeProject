@@ -9,6 +9,7 @@ public class PrimeFactor extends JFrame {
         f.setSize(528, 304);
         f.setVisible(true);
         f.setLayout(null);
+        f.setResizable(false);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JButton b = new JButton("Get Prime");
         JLabel l = new JLabel("Enter number: ");
