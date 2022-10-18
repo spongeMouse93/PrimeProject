@@ -45,14 +45,14 @@ public class PrimeFactor extends JFrame implements ActionListener {
             try {
                     int num = Integer.parseInt(tf.getText());
                     if (num <= 1)
-                        JOptionPane.showMessageDialog(f, "Number must be greater than 1");
+                        JOptionPane.showMessageDialog(f, "Number must be greater than 1", "Alert", JOPtionPane.WARNING_MESSAGE);
                     else if (isPrime(num)) {
-                        JOptionPane.showMessageDialog(f, "The number is prime.");
+                        JOptionPane.showMessageDialog(f, "The number is prime.", "Alert", JOPtionPane.WARNING_MESSAGE);
                         ta.setText("[1, " + num + "]");
                     } else
                         ta.setText(primeFactors(num));
                 } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(f, "Only ints allowed");
+                    JOptionPane.showMessageDialog(f, "Only ints allowed", "Alert", JOPtionPane.WARNING_MESSAGE);
                 }
         else if (e.getSource() == ba){
             Color c = JColorChooser.showDialog(this, "Choose Background Color", Color.BLACK);
